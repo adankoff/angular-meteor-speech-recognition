@@ -1,0 +1,84 @@
+<md-content class="md-padding">
+  
+  <md-content layout="column">
+
+    <md-card class="md-padding" layout="row">
+      <span flex="50" style="text-align:center;">
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 256.000000 256.000000" preserveAspectRatio="xMidYMid meet">
+          <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)" fill="{{recognition.fill}}" stroke="none">
+            <path d="M1220 2299 c-103 -21 -193 -88 -239 -176 -37 -74 -43 -141 -39 -498
+            5 -393 6 -399 94 -494 75 -82 132 -106 249 -106 80 0 97 3 149 30 65 33 122
+            92 158 163 23 47 23 48 23 442 0 385 -1 396 -22 442 -64 140 -228 227 -373
+            197z"></path>
+            <path d="M595 1308 c20 -190 99 -348 232 -468 67 -59 206 -133 287 -151 l56
+            -12 0 -214 0 -213 110 0 110 0 0 213 0 213 71 18 c118 30 203 80 300 176 128
+            126 192 259 206 427 l6 73 -102 0 -101 0 0 -50 c0 -105 -60 -229 -153 -317
+            -101 -95 -196 -133 -331 -133 -259 0 -463 182 -492 440 l-7 60 -99 0 -99 0 6
+            -62z"></path>
+          </g>
+        </svg><br/>
+        
+        <md-button ng-hide="recognizing" class="md-raised md-primary" ng-click="start()">Start</md-button>
+        <md-button ng-show="recognizing" class="md-raised md-primary md-warn" ng-click="stop()">Stop</md-button>
+
+        <p>{{recognition.status}} {{recognizing}}</p>
+      </span>
+      <span flex="50" style="display: flex; justify-content: center; flex-direction: column; text-align: center;" ng-show="party._id">
+        <h2>
+          <span ng-bind-html="final_transcript | to_trusted" ng-model="final_transcript"></span>
+          <span style="color:#666;" ng-bind-html="interim_transcript | to_trusted" ng-model="interim_transcript"></span>
+        </h2>
+      </span>
+    </md-card>
+
+<!--     <md-card class="md-padding" layout="row">
+      <form layout="row">
+        <md-input-container md-no-float>
+          <md-icon md-svg-icon="action:ic_search_24px"></md-icon>
+          <input type="text" ng-model="search" id="search" placeholder="Search" aria-label="Search">
+        </md-input-container>
+        <span flex></span>
+        <md-input-container>
+          <md-select ng-model="orderProperty" placeholder="Sort Order">
+            <md-option value="1">Ascending</md-option>
+            <md-option value="-1">Descending</md-option>
+          </md-select>
+        </md-input-container>
+      </form>
+    </md-card> -->
+
+    <md-card>
+      <md-list>
+        <md-list-item dir-paginate="party in parties | itemsPerPage: perPage" total-items="partiesCount.count" class="md-3-line">
+          <div class="md-list-item-text">
+            <h2 class="md-title" ng-bind-html="party.name | to_trusted" id="{{party._id}}"></h2>
+            <p><small>Posted by {{ creator(party) | displayName }} at {{party.date | date:'medium' }}</small></p>
+
+            <!-- <md-button class="md-raised md-primary" ng-click="remove(party)">Delete</md-button> -->
+            <span class="bspinner">
+              <svg class="movesvg" version="1.0" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256.000000 256.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)" fill="{{recognition.fill}}" stroke="none">
+                  <path d="M1220 2299 c-103 -21 -193 -88 -239 -176 -37 -74 -43 -141 -39 -498
+                  5 -393 6 -399 94 -494 75 -82 132 -106 249 -106 80 0 97 3 149 30 65 33 122
+                  92 158 163 23 47 23 48 23 442 0 385 -1 396 -22 442 -64 140 -228 227 -373
+                  197z"></path>
+                  <path d="M595 1308 c20 -190 99 -348 232 -468 67 -59 206 -133 287 -151 l56
+                  -12 0 -214 0 -213 110 0 110 0 0 213 0 213 71 18 c118 30 203 80 300 176 128
+                  126 192 259 206 427 l6 73 -102 0 -101 0 0 -50 c0 -105 -60 -229 -153 -317
+                  -101 -95 -196 -133 -331 -133 -259 0 -463 182 -492 440 l-7 60 -99 0 -99 0 6
+                  -62z"></path>
+                </g>
+              </svg>
+              <md-progress-circular ng-show="party.status == 'live'" class="md-warn" md-mode="indeterminate"></md-progress-circular>
+            </span>
+          </div>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+    </md-card>
+
+  </md-content>
+
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+
+</md-content>

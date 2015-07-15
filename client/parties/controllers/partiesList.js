@@ -64,8 +64,8 @@ angular.module("socially").controller("PartiesListCtrl", ['$rootScope','$scope',
 
 
     $scope.party = $meteor.object(Parties, {owner: Meteor.userId(),status: 'live'});
-    console.log($scope.party);
-    console.log($scope.party._id);
+    // console.log($scope.party);
+    // console.log($scope.party._id);
     if ($scope.party.name) {
       $scope.party.status = "saved";
       console.log('saved');
@@ -79,8 +79,8 @@ angular.module("socially").controller("PartiesListCtrl", ['$rootScope','$scope',
 
     $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
-    console.log('$scope.users');
-    console.log($scope.users);
+    // console.log('$scope.users');
+    // console.log($scope.users);
 
     $scope.$on('$destroy', function() {
       subscriptionHandle.stop();

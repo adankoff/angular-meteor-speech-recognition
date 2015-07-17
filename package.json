@@ -1,0 +1,30 @@
+{
+  "name": "angular-meteor-speech-recognition",
+  "version": "1.0.0",
+  "description": "SpeechRecognition functionality within a reactive meteor-angular app.",
+  "main": "no",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adankoff/angular-meteor-speech-recognition.git"
+  },
+  "keywords": [
+    "speech",
+    "recognition",
+    "voice",
+    "api",
+    "speech",
+    "api",
+    "meteor",
+    "meteor-angularjs",
+    "angularjs"
+  ],
+  "author": "Alex Dankoff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adankoff/angular-meteor-speech-recognition/issues"
+  },
+  "homepage": "https://github.com/adankoff/angular-meteor-speech-recognition"
+}

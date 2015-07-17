@@ -16,6 +16,8 @@ demeteorizer
 
 # Modulus deployment (from demeteorizer folder)
 
+npm install -g modulus
+
 http://blog.modulus.io/deploying-meteor-apps-on-modulus
 
 https://modulus.desk.com/customer/portal/articles/1647770-using-meteor-with-modulus

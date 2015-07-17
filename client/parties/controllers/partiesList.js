@@ -64,12 +64,7 @@ angular.module("socially").controller("PartiesListCtrl", ['$rootScope','$scope',
 
 
     $scope.party = $meteor.object(Parties, {owner: Meteor.userId(),status: 'live'});
-    // console.log($scope.party);
-    // console.log($scope.party._id);
-    if ($scope.party.name) {
-      $scope.party.status = "saved";
-      console.log('saved');
-    }
+
     // $scope.images = $meteor.collectionFS(Images, false).subscribe('images');
 
     var subscriptionHandle;
@@ -174,6 +169,7 @@ if (!('webkitSpeechRecognition' in window)) {
   // upgrade();
   showInfo('info_upgrade');
 } else {
+
   $scope.start_button = 'hidden';
   $scope.interim_transcript = '';
   $scope.recognition = new webkitSpeechRecognition();
@@ -188,6 +184,13 @@ if (!('webkitSpeechRecognition' in window)) {
       $scope.recognition.stop();
       return;
     }
+    console.log($scope.party);
+    console.log($scope.party._id);
+    $scope.party.save($scope.party.status = "saved");
+    if ($scope.party.name) {
+      $scope.party.status = "saved";
+    }
+
     $scope.final_transcript = '';
     $scope.recognition.lang = $scope.select_dialect.value;
     $scope.recognition.start();
@@ -204,7 +207,7 @@ if (!('webkitSpeechRecognition' in window)) {
       $scope.recognition.fill = '#000000';
       $scope.recognition.stop();
       $scope.party.status = 'saved';
-      $scope.recognition.status = 'Start again.';
+      $scope.recognition.status = 'Speak again.';
   }
 
   $scope.createParty = function() {

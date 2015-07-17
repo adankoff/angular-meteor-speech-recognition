@@ -4,14 +4,22 @@
 </head>
 
 <body layout="column">
-  <md-toolbar md-scroll-shrink layout="row" layout-align="start center" layout-padding>
-    <div>
-      <a href="/parties">Speakerbots</a>
-    </div>
-    <span flex></span>
-    <div class="navbar-right navbar-text">
-      <meteor-include src="loginButtons"></meteor-include>
-    </div>
-  </md-toolbar>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button md-button md-default-theme" aria-label="Settings">
+          <md-icon md-svg-icon="/menu.svg" class="ng-scope ng-isolate-scope md-default-theme" aria-hidden="true"></md-icon>
+        </md-button>
+        <h2>
+          <a href="/parties"><span>Second hand, Broken Word</span></a>
+        </h2>
+        <span flex></span>
+        <div class="navbar-right navbar-text">
+          <meteor-include src="loginButtons"></meteor-include>
+        </div>
+      </div>
+    </md-toolbar>
+
+
   <div ui-view class="container-fluid"></div>
 </body>

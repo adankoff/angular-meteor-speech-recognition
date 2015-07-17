@@ -7,6 +7,6 @@ Meteor.publish("parties", function (options, searchString) {
     $or:[ {} ]}), { noReady: true });
   return Parties.find({
     'name' : { '$regex' : '.*' + searchString || '' + '.*', '$options' : 'i' },
-    $or:[ {} ]} ,options);
+    $or:[ {status: {$in: ["live", "saved"]}} ]} ,options);
 
 });

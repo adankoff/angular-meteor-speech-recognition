@@ -77,7 +77,7 @@
                 <md-progress-circular ng-show="party.status == 'live'" class="md-warn" md-mode="indeterminate"></md-progress-circular>
               </span>
             </span>
-            <md-button class="md-raised md-primary" ng-click="remove(party)">Delete</md-button>
+            <md-button ng-show="currentUser.emails[0].address == 'a.dankoff@gmail.com'" class="md-raised md-primary" ng-click="remove(party)">Delete</md-button>
 <!--             <md-button class="md-icon-button" aria-label="Favorite">
               <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
             </md-button> -->

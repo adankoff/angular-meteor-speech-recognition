@@ -8,6 +8,9 @@ angular.module("socially").controller("PartiesListCtrl", ['$rootScope','$scope',
 
     $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
+    // console.log('$scope.users');
+    // console.log($scope.users);
+
     $scope.parties = $meteor.collection(function() {
       return Parties.find({}, {
         sort : $scope.getReactively('sort')
@@ -25,7 +28,11 @@ angular.module("socially").controller("PartiesListCtrl", ['$rootScope','$scope',
     });
 
     $scope.remove = function(party){
-      $scope.parties.splice( $scope.parties.indexOf(party), 1 );
+
+      $scope.parties[$scope.parties.indexOf(party)].status = "removed";
+      console.log($scope.parties.indexOf(party));
+      console.log($scope.parties[$scope.parties.indexOf(party)]);
+      // $scope.parties.splice( $scope.parties.indexOf(party), 1 );
     };
 
     $scope.updateOrder = function(sortedArr) {
@@ -61,21 +68,12 @@ angular.module("socially").controller("PartiesListCtrl", ['$rootScope','$scope',
       return owner;
     };
 
-
-
     $scope.party = $meteor.object(Parties, {owner: Meteor.userId(),status: 'live'});
-
-    // $scope.images = $meteor.collectionFS(Images, false).subscribe('images');
 
     var subscriptionHandle;
     $meteor.subscribe('parties').then(function(handle) {
       subscriptionHandle = handle;
     });
-
-    $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
-
-    // console.log('$scope.users');
-    // console.log($scope.users);
 
     $scope.$on('$destroy', function() {
       subscriptionHandle.stop();

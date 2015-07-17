@@ -30,8 +30,8 @@ angular.module("socially").controller("PartiesListCtrl", ['$rootScope','$scope',
     $scope.remove = function(party){
 
       $scope.parties[$scope.parties.indexOf(party)].status = "removed";
-      console.log($scope.parties.indexOf(party));
-      console.log($scope.parties[$scope.parties.indexOf(party)]);
+      //console.log($scope.parties.indexOf(party));
+      //console.log($scope.parties[$scope.parties.indexOf(party)]);
       // $scope.parties.splice( $scope.parties.indexOf(party), 1 );
     };
 
@@ -165,7 +165,7 @@ $scope.start_timestamp;
 
 if (!('webkitSpeechRecognition' in window)) {
   // upgrade();
-  showInfo('info_upgrade');
+  //  console.log('info_upgrade');
 } else {
 
   $scope.start_button = 'hidden';
@@ -182,8 +182,8 @@ if (!('webkitSpeechRecognition' in window)) {
       $scope.recognition.stop();
       return;
     }
-    console.log($scope.party);
-    console.log($scope.party._id);
+    //console.log($scope.party);
+    //console.log($scope.party._id);
     $scope.party.save($scope.party.status = "saved");
     if ($scope.party.name) {
       $scope.party.status = "saved";
@@ -200,7 +200,7 @@ if (!('webkitSpeechRecognition' in window)) {
   }
 
   $scope.stop = function(event) {
-    console.log('stop')
+    //console.log('stop');
       $scope.recognizing = false;
       $scope.recognition.fill = '#000000';
       $scope.recognition.stop();
@@ -209,14 +209,14 @@ if (!('webkitSpeechRecognition' in window)) {
   }
 
   $scope.createParty = function() {
-    console.log($rootScope.currentUser);
+    //console.log($rootScope.currentUser._id);
     $scope.newParty = {};
     $scope.newParty.name = '...';
     $scope.newParty.owner = $rootScope.currentUser._id;
     $scope.newParty.date = Date.now();
     $scope.newParty.status = 'live';
 
-    var testval = $scope.parties.push($scope.newParty);
+    $scope.parties.push($scope.newParty);
     // console.log($scope.parties);
     // console.log($scope.newParty);
     // console.log(testval);
@@ -230,20 +230,20 @@ if (!('webkitSpeechRecognition' in window)) {
       $scope.recognition.fill = '#f44336';
       $scope.recognition.status = 'Speak now.';
     });
-    console.log($scope.recognizing);
+    //console.log($scope.recognizing);
     $scope.createParty();
-    showInfo('info_speak_now');
+      console.log('info_speak_now');
   };
 
   $scope.recognition.onend = function() {
-    showInfo('onend');
+      //console.log('onend');
     $scope.recognizing = false;
     if ($scope.ignore_onend) {
-      showInfo('ignore_onend');
+        //console.log('ignore_onend');
       return;
     }
     if (!$scope.final_transcript) {
-      showInfo('info_start');
+        //console.log('info_start');
       return;
     }
     $scope.$apply(function () {
@@ -253,7 +253,7 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 
   $scope.recognition.onresult = function(event) {
-    showInfo('onresult');
+    //console.log('onresult');
 
     $scope.interim_transcript = '';
     if (typeof(event.results) == 'undefined') {
@@ -262,7 +262,7 @@ if (!('webkitSpeechRecognition' in window)) {
       return;
     }
 
-    console.log(event.results.length);
+    //console.log(event.results.length);
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal ) {
         $scope.final_transcript += event.results[i][0].transcript;
@@ -277,9 +277,9 @@ if (!('webkitSpeechRecognition' in window)) {
       } else {
         $scope.party.name = $scope.final_transcript + $scope.interim_transcript;
       }
-      console.log($scope.party);
-      console.log($scope.party.name);
-      console.log($scope.interim_transcript);
+      //console.log($scope.party);
+      //console.log($scope.party.name);
+      //console.log($scope.interim_transcript);
     });
 
   };
@@ -315,10 +315,6 @@ function linebreak(s) {
 var first_char = /\S/;
 function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
-}
-
-function showInfo(s) {
-  console.log(s);
 }
 
 

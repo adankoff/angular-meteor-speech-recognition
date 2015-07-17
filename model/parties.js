@@ -10,7 +10,7 @@ Parties.allow({
     if (currrentUser.emails[0].address == 'a.dankoff@gmail.com')
       return true;
 
-    if (userId !== party.owner || userId !== 'tce5JjsAZJr7bvcJp')
+    if (userId !== party.owner)
       return false;
 
     return true;

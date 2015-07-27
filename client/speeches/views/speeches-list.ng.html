@@ -26,7 +26,7 @@
 
         <p>{{recognition.status}} {{recognizing}}</p>
       </span>
-      <span flex="50" style="display: flex; justify-content: center; flex-direction: column; text-align: center;" ng-show="party._id">
+      <span flex="50" style="display: flex; justify-content: center; flex-direction: column; text-align: center;" ng-show="speech._id">
         <h2>
           <span ng-bind-html="final_transcript | to_trusted" ng-model="final_transcript"></span>
           <span style="color:#666;" ng-bind-html="interim_transcript | to_trusted" ng-model="interim_transcript"></span>
@@ -35,6 +35,7 @@
     </md-card>
 
 <!--     <md-card class="md-padding" layout="row">
+      <h2 layout="row">{{speechesCount.count}}</h2>
       <form layout="row">
         <md-input-container md-no-float>
           <md-icon md-svg-icon="action:ic_search_24px"></md-icon>
@@ -52,16 +53,16 @@
 
     <md-card>
       <md-list>
-        <md-list-item dir-paginate="party in parties | itemsPerPage: perPage" total-items="partiesCount.count" class="md-3-line">
+        <md-list-item dir-paginate="speech in speeches | itemsPerPage: perPage" total-items="speechesCount.count" class="md-3-line">
           <div class="md-list-item-text" layout="row">
             <span flex="75">
-              <h2 class="md-title" ng-bind-html="party.name | to_trusted" id="{{party._id}}"></h2>
-              <p><small>Posted by {{ creator(party) | displayName }} at {{party.date | date:'medium' }}</small></p>
+              <h2 class="md-title" ng-bind-html="speech.name | to_trusted" id="{{speech._id}}"></h2>
+              <p><small>Posted by {{ creator(speech) | displayName }} at {{speech.date | date:'medium' }}</small></p>
             </span>
 
             <span flex="25">
 
-              <md-button ng-show="currentUser.emails[0].address == 'a.dankoff@gmail.com'" class="md-raised md-primary" ng-click="remove(party)">Delete</md-button>
+              <md-button ng-show="currentUser.emails[0].address == 'a.dankoff@gmail.com'" class="md-raised md-primary" ng-click="remove(speech)">Delete</md-button>
 
               <span class="bspinner">
                 <svg class="movesvg" version="1.0" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256.000000 256.000000" preserveAspectRatio="xMidYMid meet">
@@ -77,7 +78,7 @@
                     -62z"></path>
                   </g>
                 </svg>
-                <md-progress-circular ng-show="party.status == 'live'" class="md-warn" md-mode="indeterminate"></md-progress-circular>
+                <md-progress-circular ng-show="speech.status == 'live'" class="md-warn" md-mode="indeterminate"></md-progress-circular>
               </span>
             </span>
 <!--             <md-button class="md-icon-button" aria-label="Favorite">

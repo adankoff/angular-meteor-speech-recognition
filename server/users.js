@@ -13,6 +13,6 @@ Meteor.users.find({ "status.online": true }).observe({
   removed: function(id) {
   	this.connected--;
   	console.log(id._id + ' disconnected - total: ' + this.connected);
-    Parties.update({owner: id._id}, {$set: {status: 'saved'}}, {multi: true});
+    Speeches.update({owner: id._id}, {$set: {status: 'saved'}}, {multi: true});
   }
 });

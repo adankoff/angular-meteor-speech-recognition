@@ -1,24 +1,29 @@
-angular.module("socially").run(["$rootScope", "$location", function($rootScope, $location) {
+angular.module("webspeechApp").run(["$rootScope", "$location", function($rootScope, $location) {
   $rootScope.$on("$stateChangeError", function(event, next, previous, error) {
     // We can catch the error thrown when the $requireUser promise is rejected
     // and redirect the user back to the main page
     if (error === "AUTH_REQUIRED") {
-      $location.path("/parties");
+      $location.path("/speeches");
     }
   });
 }]);
 
-angular.module("socially").config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
+angular.module("webspeechApp").config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
   function($urlRouterProvider, $stateProvider, $locationProvider){
 
     $locationProvider.html5Mode(true);
 
     $stateProvider
-      .state('parties', {
-        url: '/parties',
-        templateUrl: 'client/parties/views/parties-list.ng.html',
-        controller: 'PartiesListCtrl'
+      .state('speeches', {
+        url: '/speeches',
+        templateUrl: 'client/speeches/views/speeches-list.ng.html',
+        controller: 'SpeechesListCtrl'
+      })
+      .state('speechBox', {
+        url: '/speechbox',
+        templateUrl: 'client/speechbox/views/speechbox.ng.html',
+        controller: 'SpeechBoxCtrl'
       });
 
-    $urlRouterProvider.otherwise("/parties");
+    $urlRouterProvider.otherwise("/speeches");
   }]);

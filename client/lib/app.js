@@ -1,4 +1,4 @@
-angular.module('socially',[
+angular.module('webspeechApp',[
   'angular-meteor',
   'ui.router',
   'angularUtils.directives.dirPagination',
@@ -9,7 +9,7 @@ angular.module('socially',[
 
 
 function onReady() {
-  angular.bootstrap(document, ['socially']);
+  angular.bootstrap(document, ['webspeechApp']);
 }
 
 if (Meteor.isCordova)
